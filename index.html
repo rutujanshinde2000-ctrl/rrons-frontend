@@ -1,36 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RRONS Free Web Scraper</title>
-    <style>
-        body { font-family: Arial; padding: 20px; background: #f7f7f7; }
-        .container { max-width: 600px; margin: auto; background: #fff; padding: 20px; border-radius: 10px; }
-        input, button { width: 100%; padding: 12px; margin-top: 10px; }
-        .result-box { margin-top: 20px; padding: 10px; background: #eef; border-radius: 8px; }
-        .ads { margin-top: 20px; background: #ddd; padding: 20px; text-align: center; border-radius: 10px; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RRONS Scraper</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #ffffff;
+      margin: 0;
+      padding: 0;
+      color: #1a1a1a;
+    }
+
+    header {
+      background: #007bff;
+      padding: 16px 24px;
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+    }
+
+    header span {
+      color: #cfe8ff;
+      margin-left: 8px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      margin-top: 12px;
+      background: #007bff;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .export-btn {
+      background: #1e40af;
+    }
+
+    #result {
+      margin-top: 20px;
+      white-space: pre-wrap;
+      padding: 10px;
+      border: 1px solid #eee;
+      border-radius: 6px;
+    }
+
+    .ad-box {
+      margin-top: 30px;
+      padding: 20px;
+      border: 1px dashed #007bff;
+      border-radius: 8px;
+      text-align: center;
+      color: #007bff;
+    }
+  </style>
+
+  <script src="script.js" defer></script>
 </head>
+
 <body>
 
-<div class="container">
-    <h2>RRONS Free Web Scraper</h2>
+  <header>
+    RRONS <span>Scraper</span>
+  </header>
 
-    <input id="urlInput" placeholder="Enter website URL (example: https://example.com)">
-    <button onclick="scrape()">Scrape Website</button>
+  <div class="container">
+    <h2 style="color:#007BFF;">Free Web Scraper</h2>
+    <p>Enter any website URL and extract content instantly.</p>
 
-    <div class="result-box" id="result"></div>
+    <input id="urlInput" placeholder="https://example.com" />
 
-    <button onclick="exportCSV()">Export CSV</button>
-    <button onclick="exportPDF()">Export PDF</button>
+    <button onclick="startScrape()">Scrape Website</button>
 
-    <div class="ads">
-        <p>Ad space — you can add Google Ads here</p>
+    <div id="result"></div>
+
+    <div style="margin-top:20px; display:flex; gap:10px;">
+      <button class="export-btn" onclick="exportCSV()">Export CSV</button>
+      <button class="export-btn" onclick="exportPDF()">Export PDF</button>
     </div>
-</div>
 
-<script src="script.js"></script>
+    <div class="ad-box">
+      Ad Space — Your Google Ads will appear here
+    </div>
+  </div>
 
 </body>
 </html>
+
