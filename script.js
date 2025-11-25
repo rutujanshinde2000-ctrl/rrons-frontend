@@ -1,60 +1,73 @@
-const backendURL = "https://rrons-scraper.onrender.com/scrape";
-let scrapedData = null;
+async function startScrape() {
+    const url = document.getElementById("urlInput").value.trim();
+    const resultBox = document.getElementById("result");
 
-async function scrape() {
-    let url = document.getElementById("urlInput").value;
-    if (!url) return alert("Please enter a valid URL");
+    if (!url) {
+        resultBox.innerText = "❗ Please enter a website URL.";
+        return;
+    }
 
-    let res = await fetch(backendURL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url })
-    });
+    // Clear previous results
+    resultBox.innerText = "";
+    resultBox.style.border = "1px solid #eee";
 
-    let data = await res.json();
-    scrapedData = data.data;
+    // Show loading
+    resultBox.innerText = "⏳ Scraping... please wait ";
 
-    document.getElementById("result").innerHTML = `
-        <h3>Title:</h3> ${scrapedData.title}
-        <h3>Headings:</h3> ${scrapedData.headings.join("<br>")}
-        <h3>Links:</h3> ${scrapedData.links.join("<br>")}
-    `;
+    try {
+        const response = await fetch("https://rrons-scraper.onrender.com/scrape", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ url })
+        });
+
+        const data = await response.json();
+
+        if (data.error) {
+            resultBox.innerText = "❌ Error: " + data.error;
+            return;
+        }
+
+        // Show scraped content
+        resultBox.innerText = data.text || "No text found on the website.";
+    } catch (error) {
+        resultBox.innerText = "❌ Failed to scrape. Website may be blocking scraping.";
+    }
 }
 
+
+
+// EXPORT AS CSV
 function exportCSV() {
-    if (!scrapedData) return alert("Scrape a site first!");
+    const text = document.getElementById("result").innerText;
 
-    let rows = [
-        ["Title", scrapedData.title],
-        ["Headings", scrapedData.headings.join(" | ")],
-        ["Links", scrapedData.links.join(" | ")]
-    ];
+    if (!text) {
+        alert("Scrape something before exporting!");
+        return;
+    }
 
-    let csv = rows.map(r => r.join(",")).join("\n");
-    let blob = new Blob([csv], { type: "text/csv" });
-
-    let a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = "scraped_data.csv";
-    a.click();
+    const blob = new Blob([text], { type: "text/csv" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "scraped_data.csv";
+    link.click();
 }
 
+
+
+// EXPORT AS PDF
 function exportPDF() {
-    if (!scrapedData) return alert("Scrape a site first!");
+    const text = document.getElementById("result").innerText;
 
-    let content = `
-Title: ${scrapedData.title}
+    if (!text) {
+        alert("Scrape something before exporting!");
+        return;
+    }
 
-Headings:
-${scrapedData.headings.join("\n")}
-
-Links:
-${scrapedData.links.join("\n")}
-    `;
-
-    let blob = new Blob([content], { type: "application/pdf" });
-    let a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = "scraped_data.pdf";
-    a.click();
+    const win = window.open("", "", "width=600,height=600");
+    win.document.write("<pre>" + text + "</pre>");
+    win.document.close();
+    win.print();
 }
+
+
