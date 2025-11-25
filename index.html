@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RRONS Free Web Scraper</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #f7f7f7; }
+        .container { max-width: 600px; margin: auto; background: #fff; padding: 20px; border-radius: 10px; }
+        input, button { width: 100%; padding: 12px; margin-top: 10px; }
+        .result-box { margin-top: 20px; padding: 10px; background: #eef; border-radius: 8px; }
+        .ads { margin-top: 20px; background: #ddd; padding: 20px; text-align: center; border-radius: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>RRONS Free Web Scraper</h2>
+
+    <input id="urlInput" placeholder="Enter website URL (example: https://example.com)">
+    <button onclick="scrape()">Scrape Website</button>
+
+    <div class="result-box" id="result"></div>
+
+    <button onclick="exportCSV()">Export CSV</button>
+    <button onclick="exportPDF()">Export PDF</button>
+
+    <div class="ads">
+        <p>Ad space — you can add Google Ads here</p>
+    </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
