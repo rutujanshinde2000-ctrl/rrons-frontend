@@ -1,4 +1,4 @@
-const backendURL = "https://rrons-scraper.onrender.com/scrape"; // use YOUR actual render URL
+const backendURL = "https://rrons-backend.onrender.com/scrape"; // use YOUR actual render URL
 
 async function startScrape() {
   const url = document.getElementById("urlInput").value.trim();
