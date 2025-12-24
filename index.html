@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RRONS Scraper</title>
 
-  <!-- Google AdSense Global Script -->
+  <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5777394751618820"
      crossorigin="anonymous"></script>
 
@@ -45,10 +45,11 @@
       font-size: 16px;
       border: 1px solid #ccc;
       border-radius: 6px;
+      margin-top: 10px;
     }
 
     button {
-      margin-top: 12px;
+      margin-top: 15px;
       background: #007bff;
       color: white;
       padding: 12px 20px;
@@ -65,18 +66,35 @@
     #result {
       margin-top: 20px;
       white-space: pre-wrap;
-      padding: 10px;
+      padding: 12px;
       border: 1px solid #eee;
       border-radius: 6px;
+      background: #fafafa;
+      max-height: 400px;
+      overflow: auto;
     }
 
-    .ad-box {
-      margin-top: 30px;
+    .options {
+      margin-top: 15px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      background: #f9f9f9;
+    }
+
+    footer {
+      margin-top: 50px;
+      background: #f1f5f9;
       padding: 20px;
-      border: 1px dashed #007bff;
-      border-radius: 8px;
       text-align: center;
+      font-size: 14px;
+      color: #555;
+    }
+
+    footer a {
       color: #007bff;
+      text-decoration: none;
+      margin: 0 8px;
     }
   </style>
 
@@ -85,44 +103,45 @@
 
 <body>
 
-  <header>
-    RRONS <span>Scraper</span>
-  </header>
+<header>
+  RRONS <span>Scraper</span>
+</header>
 
-  <div class="container">
-    <h2 style="color:#007BFF;">Free Web Scraper</h2>
-    <p>Enter any website URL and extract content instantly.</p>
+<div class="container">
+  <h2 style="color:#007BFF;">Free Web Scraper</h2>
+  <p>Enter any website URL and choose what data you want.</p>
 
-    <input id="urlInput" placeholder="https://example.com" />
+  <input id="urlInput" placeholder="https://example.com" />
 
-    <button onclick="startScrape()">Scrape Website</button>
+  <div class="options">
+    <strong>Select what to scrape:</strong><br><br>
 
-    <div id="result"></div>
-
-    <div style="margin-top:20px; display:flex; gap:10px;">
-      <button class="export-btn" onclick="exportCSV()">Export CSV</button>
-      <button class="export-btn" onclick="exportPDF()">Export PDF</button>
-    </div>
-
-    <!-- Real Google AdSense Unit -->
-    <div class="ad-box">
-      <ins class="adsbygoogle"
-        style="display:block"
-        data-ad-client="ca-pub-5777394751618820"
-        data-ad-slot="7192353057"
-        data-ad-format="auto"
-        data-full-width-responsive="true"></ins>
-
-      <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-
-      Ads loading…
-    </div>
+    <label><input type="checkbox" value="title" checked> Page Title</label><br>
+    <label><input type="checkbox" value="headings" checked> Headings (H1–H3)</label><br>
+    <label><input type="checkbox" value="text" checked> Text / Paragraphs</label><br>
+    <label><input type="checkbox" value="links"> Links</label>
   </div>
+
+  <input id="selectorInput" placeholder="Optional: CSS selector (e.g. article, .content)" />
+
+  <button onclick="startScrape()">Scrape Website</button>
+
+  <div id="result"></div>
+
+  <div style="margin-top:20px; display:flex; gap:10px;">
+    <button class="export-btn" onclick="exportCSV()">Export CSV</button>
+    <button class="export-btn" onclick="exportPDF()">Export PDF</button>
+  </div>
+</div>
+
+<footer>
+  <strong>RRONS</strong><br>
+  Contact: <a href="mailto:rrons.support@gmail.com">rrons.support@gmail.com</a> |
+  <a href="https://www.rrons.in" target="_blank">Website</a> |
+  <a href="https://github.com/rutujanshinde2000-ctrl" target="_blank">GitHub</a>
+  <br><br>
+  © 2025 RRONS. All rights reserved.
+</footer>
 
 </body>
 </html>
-
-
-
